@@ -1,7 +1,5 @@
 ﻿using Npgsql;
-using System;
 using System.Data;
-using System.Windows.Forms;
 
 namespace Programa_de_Gerenciamento_Industrial
 {
@@ -92,14 +90,14 @@ namespace Programa_de_Gerenciamento_Industrial
             using (var cmd = new NpgsqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@id_lote", idLote);
-                cmd.Parameters.AddWithValue("@id_cliente", idOutro); 
+                cmd.Parameters.AddWithValue("@id_cliente", idOutro);
                 cmd.ExecuteNonQuery();
             }
         }
 
         private void Form4_Load(object sender, EventArgs e)
         {
-           
+
         }
     }
 }

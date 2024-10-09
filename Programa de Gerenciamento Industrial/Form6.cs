@@ -1,12 +1,8 @@
-﻿using Npgsql;
-using System;
-using System.Data;
-using System.IO;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using ClosedXML.Excel;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
-using ClosedXML.Excel;
+using Npgsql;
+using System.Data;
 
 namespace Programa_de_Gerenciamento_Industrial
 {
@@ -34,7 +30,7 @@ namespace Programa_de_Gerenciamento_Industrial
 
                 comboBox1.DataSource = dtClientes;
                 comboBox1.DisplayMember = "nome";
-                comboBox1.ValueMember = "id_cliente"; 
+                comboBox1.ValueMember = "id_cliente";
             }
             catch (Exception ex)
             {

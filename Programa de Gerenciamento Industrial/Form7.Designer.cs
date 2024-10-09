@@ -169,8 +169,10 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
             Name = "Form7";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form7";
             Load += Form7_Load;
             ResumeLayout(false);
