@@ -159,6 +159,11 @@ namespace Programa_de_Gerenciamento_Industrial
 
             MessageBox.Show("Relatório exportado para Excel com sucesso!");
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
 
