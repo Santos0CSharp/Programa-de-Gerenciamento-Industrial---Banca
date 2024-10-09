@@ -1,7 +1,4 @@
 ﻿using Npgsql;
-using System;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Programa_de_Gerenciamento_Industrial
 {

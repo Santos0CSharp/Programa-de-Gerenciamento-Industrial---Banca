@@ -1,7 +1,5 @@
 ﻿using Npgsql;
-using System;
 using System.Data;
-using System.Windows.Forms;
 
 namespace Programa_de_Gerenciamento_Industrial
 {
@@ -17,7 +15,7 @@ namespace Programa_de_Gerenciamento_Industrial
         private void Form3_Load(object sender, EventArgs e)
         {
             dataGridViewLotes.Rows.Clear();
-            CarregarLotes(); 
+            CarregarLotes();
         }
 
         private void CarregarLotes()
@@ -33,7 +31,7 @@ namespace Programa_de_Gerenciamento_Industrial
                     using (var adapter = new NpgsqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
-                        adapter.Fill(dt); 
+                        adapter.Fill(dt);
 
                         dataGridViewLotes.DataSource = dt;
                     }
@@ -47,21 +45,21 @@ namespace Programa_de_Gerenciamento_Industrial
             {
                 MessageBox.Show($"Erro inesperado: {ex.Message}");
             }
-        
+
         }
 
         private void dataGridViewLotes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             Form7 form7 = new Form7();
 
-            
+
             form7.Show();// Adicionar lote
-            
+
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -88,7 +86,7 @@ namespace Programa_de_Gerenciamento_Industrial
 
         private void button5_Click(object sender, EventArgs e)
         {
-            this.Close(); 
+            this.Close();
         }
     }
 }
