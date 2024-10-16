@@ -51,7 +51,6 @@
             dataGridViewLotes.RowTemplate.Height = 25;
             dataGridViewLotes.Size = new Size(516, 431);
             dataGridViewLotes.TabIndex = 0;
-            dataGridViewLotes.CellContentClick += dataGridViewLotes_CellContentClick;
             // 
             // button1
             // 
@@ -137,6 +136,7 @@
             Name = "Form3";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form3";
+            Load += Form3_Load_1;
             ((System.ComponentModel.ISupportInitialize)dataGridViewLotes).EndInit();
             ResumeLayout(false);
         }

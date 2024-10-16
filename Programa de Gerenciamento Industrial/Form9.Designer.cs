@@ -48,6 +48,7 @@
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ButtonFace;
             label5.Location = new Point(125, 36);
             label5.Margin = new Padding(2, 0, 2, 0);
             label5.Name = "label5";

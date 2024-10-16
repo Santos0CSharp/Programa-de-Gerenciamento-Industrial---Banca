@@ -123,5 +123,10 @@ namespace Programa_de_Gerenciamento_Industrial
         {
 
         }
+
+        private void Form5_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

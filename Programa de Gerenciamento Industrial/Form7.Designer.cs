@@ -45,6 +45,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(30, 40);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
@@ -57,6 +58,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(4, 87);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
@@ -69,6 +71,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(43, 127);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
@@ -112,7 +115,6 @@
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(211, 23);
             textBox1.TabIndex = 5;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // textBox3
             // 
@@ -137,6 +139,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonFace;
             label4.Location = new Point(30, 168);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";

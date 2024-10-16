@@ -44,7 +44,6 @@ namespace Programa_de_Gerenciamento_Industrial
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar lotes: " + ex.Message);
             }
         }
 
@@ -88,12 +87,10 @@ namespace Programa_de_Gerenciamento_Industrial
                 }
                 else
                 {
-                    MessageBox.Show("Erro ao excluir o lote.");
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao excluir lote: " + ex.Message);
             }
         }
 

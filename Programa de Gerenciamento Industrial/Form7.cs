@@ -1,4 +1,5 @@
 ﻿using Npgsql;
+using System.Threading.Tasks;
 
 namespace Programa_de_Gerenciamento_Industrial
 {
@@ -9,36 +10,39 @@ namespace Programa_de_Gerenciamento_Industrial
             InitializeComponent();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private async void button2_Click(object sender, EventArgs e)
         {
-            string nome_lote = textBox1.Text;
-            DateTime data_criação = dateTimePicker1.Value;
+            string nomeLote = textBox1.Text;
+            DateTime dataCriacao = dateTimePicker1.Value;
             string status = textBox3.Text;
             int quantidade = Convert.ToInt32(textBox2.Text);
 
             string connectionString = "Host=aws-0-sa-east-1.pooler.supabase.com;Port=6543;Username=postgres.stjotefgyhrhlobwldqs;Password=Q9nWPZV8.reuyMC;Database=postgres";
 
-            using (NpgsqlConnection conn = new NpgsqlConnection(connectionString))
+            using (var conn = new NpgsqlConnection(connectionString))
             {
                 try
                 {
-                    conn.Open();
-                    string query = "INSERT INTO lotes (nome_lote, data_criação, status, quantidade) VALUES (@nome_lote, @data_criação, @status, @quantidade)";
+                    await conn.OpenAsync();
+                    string query = "INSERT INTO lotes (nome_lote, data_criação, status, quantidade) VALUES (@nomeLote, @dataCriacao, @status, @quantidade)";
 
-                    NpgsqlCommand cmd = new NpgsqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@nome_lote", nome_lote);
-                    cmd.Parameters.AddWithValue("@data_criação", data_criação);
-                    cmd.Parameters.AddWithValue("@status", status);
-                    cmd.Parameters.AddWithValue("quantidade", quantidade);
+                    using (var cmd = new NpgsqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@nomeLote", nomeLote);
+                        cmd.Parameters.AddWithValue("@dataCriacao", dataCriacao);
+                        cmd.Parameters.AddWithValue("@status", status);
+                        cmd.Parameters.AddWithValue("@quantidade", quantidade);
 
-                    cmd.ExecuteNonQuery();
+                        await cmd.ExecuteNonQueryAsync();
+                    }
+
                     MessageBox.Show("Lote adicionado com sucesso!");
-
                     this.Close();
                 }
-                catch (NpgsqlException ex)
+                catch (NpgsqlException)
                 {
-                    MessageBox.Show("Erro ao adicionar lote: " + ex.Message);
+                    MessageBox.Show("Erro ao adicionar lote. Aguarde um momento e tente novamente.");
+                    await Task.Delay(5000); // Aguarda 5 segundos antes de permitir nova tentativa
                 }
             }
         }
@@ -48,14 +52,8 @@ namespace Programa_de_Gerenciamento_Industrial
             this.Close();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void Form7_Load(object sender, EventArgs e)
         {
-
         }
     }
 }
