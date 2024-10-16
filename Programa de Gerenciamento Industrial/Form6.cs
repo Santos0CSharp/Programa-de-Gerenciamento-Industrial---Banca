@@ -19,23 +19,12 @@ namespace Programa_de_Gerenciamento_Industrial
         private async void LoadClientesAsync()
         {
             string query = "SELECT id_cliente, nome FROM cliente";
-
-            try
+            await LoadDataAsync(query, dtClientes =>
             {
-                using var con = new NpgsqlConnection(connectionString);
-                await con.OpenAsync();
-                using var da = new NpgsqlDataAdapter(query, con);
-                var dtClientes = new DataTable();
-                da.Fill(dtClientes);
-
                 comboBox1.DataSource = dtClientes;
                 comboBox1.DisplayMember = "nome";
                 comboBox1.ValueMember = "id_cliente";
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Erro ao carregar clientes: " + ex.Message);
-            }
+            }, "Erro ao carregar clientes");
         }
 
         private async void button5_Click(object sender, EventArgs e)
@@ -59,21 +48,32 @@ namespace Programa_de_Gerenciamento_Industrial
                 JOIN cliente c ON cl.id_cliente = c.id_cliente
                 WHERE cl.id_cliente = @id_cliente";
 
+            await LoadDataAsync(query, dtLotes =>
+            {
+                dataGridView1.DataSource = dtLotes;
+            }, "Erro ao carregar lotes: Abra esta tela novamente", new NpgsqlParameter("@id_cliente", idClienteSelecionado));
+        }
+
+        private async Task LoadDataAsync(string query, Action<DataTable> setDataSource, string errorMessage, params NpgsqlParameter[] parameters)
+        {
             try
             {
                 using var con = new NpgsqlConnection(connectionString);
                 await con.OpenAsync();
                 using var cmd = new NpgsqlCommand(query, con);
-                cmd.Parameters.AddWithValue("@id_cliente", idClienteSelecionado);
+                if (parameters != null && parameters.Length > 0)
+                {
+                    cmd.Parameters.AddRange(parameters);
+                }
 
                 using var da = new NpgsqlDataAdapter(cmd);
-                var dtLotes = new DataTable();
-                da.Fill(dtLotes);
-                dataGridView1.DataSource = dtLotes;
+                var dataTable = new DataTable();
+                da.Fill(dataTable);
+                setDataSource(dataTable);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show("Erro ao carregar lotes: Abra esta tela novamente");
+                MessageBox.Show(errorMessage);
             }
         }
 
@@ -85,37 +85,27 @@ namespace Programa_de_Gerenciamento_Industrial
 
         private void button2_Click(object sender, EventArgs e)
         {
+            ExportDataToPdf();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            ExportDataToExcel();
+        }
+
+        private void ExportDataToPdf()
+        {
             if (dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("Não há dados para exportar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowNoDataWarning();
                 return;
             }
 
-            ExportToPdf();
-        }
-
-        private void ExportToPdf()
-        {
-            using (iTextSharp.text.Document doc = new iTextSharp.text.Document())
+            using (var doc = new iTextSharp.text.Document())
             {
                 PdfWriter.GetInstance(doc, new FileStream("relatorio.pdf", FileMode.Create));
                 doc.Open();
-
-                PdfPTable table = new PdfPTable(dataGridView1.Columns.Count);
-
-                foreach (DataGridViewColumn column in dataGridView1.Columns)
-                {
-                    table.AddCell(new Phrase(column.HeaderText));
-                }
-
-                foreach (DataGridViewRow row in dataGridView1.Rows)
-                {
-                    foreach (DataGridViewCell cell in row.Cells)
-                    {
-                        table.AddCell(new Phrase(cell.Value?.ToString() ?? string.Empty));
-                    }
-                }
-
+                PdfPTable table = CreatePdfTable();
                 doc.Add(table);
                 doc.Close();
             }
@@ -123,41 +113,62 @@ namespace Programa_de_Gerenciamento_Industrial
             MessageBox.Show("Relatório exportado para PDF com sucesso!");
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void ExportDataToExcel()
         {
             if (dataGridView1.Rows.Count == 0)
             {
-                MessageBox.Show("Não há dados para exportar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                ShowNoDataWarning();
                 return;
             }
 
-            ExportToExcel();
-        }
-
-        private void ExportToExcel()
-        {
             using (var workbook = new XLWorkbook())
             {
                 var worksheet = workbook.Worksheets.Add("Relatório");
-
-                for (int i = 0; i < dataGridView1.Columns.Count; i++)
-                {
-                    worksheet.Cell(1, i + 1).Value = dataGridView1.Columns[i].HeaderText;
-                }
-
-                for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                    {
-                        var valor = dataGridView1.Rows[i].Cells[j].Value;
-                        worksheet.Cell(i + 2, j + 1).Value = valor?.ToString() ?? string.Empty;
-                    }
-                }
-
+                FillExcelWorksheet(worksheet);
                 workbook.SaveAs("relatorio.xlsx");
             }
 
             MessageBox.Show("Relatório exportado para Excel com sucesso!");
+        }
+
+        private void FillExcelWorksheet(IXLWorksheet worksheet)
+        {
+            for (int i = 0; i < dataGridView1.Columns.Count; i++)
+            {
+                worksheet.Cell(1, i + 1).Value = dataGridView1.Columns[i].HeaderText;
+            }
+
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                {
+                    worksheet.Cell(i + 2, j + 1).Value = dataGridView1.Rows[i].Cells[j].Value?.ToString() ?? string.Empty;
+                }
+            }
+        }
+
+        private PdfPTable CreatePdfTable()
+        {
+            var table = new PdfPTable(dataGridView1.Columns.Count);
+            foreach (DataGridViewColumn column in dataGridView1.Columns)
+            {
+                table.AddCell(new Phrase(column.HeaderText));
+            }
+
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    table.AddCell(new Phrase(cell.Value?.ToString() ?? string.Empty));
+                }
+            }
+
+            return table;
+        }
+
+        private void ShowNoDataWarning()
+        {
+            MessageBox.Show("Não há dados para exportar.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -165,12 +176,6 @@ namespace Programa_de_Gerenciamento_Industrial
             this.Close();
         }
 
-        private void Form6_Load(object sender, EventArgs e)
-        {
-
-        }
+        private void Form6_Load(object sender, EventArgs e) { }
     }
 }
-
-
-
