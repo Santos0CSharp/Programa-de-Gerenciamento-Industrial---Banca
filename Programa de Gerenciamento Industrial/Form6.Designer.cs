@@ -36,6 +36,7 @@
             dataGridView1 = new DataGridView();
             button2 = new Button();
             button3 = new Button();
+            button4 = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -44,6 +45,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(12, 64);
             label1.Name = "label1";
             label1.Size = new Size(72, 25);
@@ -55,6 +57,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(24, 114);
             label2.Name = "label2";
             label2.Size = new Size(68, 21);
@@ -113,7 +116,7 @@
             button2.BackColor = Color.OrangeRed;
             button2.Cursor = Cursors.Hand;
             button2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button2.Location = new Point(596, 419);
+            button2.Location = new Point(596, 370);
             button2.Name = "button2";
             button2.Size = new Size(166, 40);
             button2.TabIndex = 13;
@@ -126,13 +129,25 @@
             button3.BackColor = Color.OrangeRed;
             button3.Cursor = Cursors.Hand;
             button3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            button3.Location = new Point(596, 504);
+            button3.Location = new Point(596, 448);
             button3.Name = "button3";
             button3.Size = new Size(166, 40);
             button3.TabIndex = 14;
             button3.Text = "Exportar par Excel";
             button3.UseVisualStyleBackColor = false;
             button3.Click += button3_Click;
+            // 
+            // button4
+            // 
+            button4.BackColor = Color.OrangeRed;
+            button4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            button4.Location = new Point(596, 524);
+            button4.Name = "button4";
+            button4.Size = new Size(166, 34);
+            button4.TabIndex = 15;
+            button4.Text = "Sair";
+            button4.UseVisualStyleBackColor = false;
+            button4.Click += button4_Click;
             // 
             // Form6
             // 
@@ -141,6 +156,7 @@
             BackgroundImage = Properties.Resources.Tela_Login;
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(800, 600);
+            Controls.Add(button4);
             Controls.Add(button3);
             Controls.Add(button2);
             Controls.Add(dataGridView1);
@@ -153,6 +169,7 @@
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form6";
             Text = "Form6";
+            Load += Form6_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -173,5 +190,6 @@
         private DataGridViewTextBoxColumn status;
         private Button button2;
         private Button button3;
+        private Button button4;
     }
 }

@@ -73,7 +73,7 @@ namespace Programa_de_Gerenciamento_Industrial
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Erro ao carregar lotes: " + ex.Message);
+                MessageBox.Show("Erro ao carregar lotes: Abra esta tela novamente");
             }
         }
 
@@ -158,6 +158,16 @@ namespace Programa_de_Gerenciamento_Industrial
             }
 
             MessageBox.Show("Relatório exportado para Excel com sucesso!");
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Form6_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

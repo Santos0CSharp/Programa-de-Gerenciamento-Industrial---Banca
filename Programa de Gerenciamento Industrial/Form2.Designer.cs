@@ -123,6 +123,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Microsoft Sans Serif", 14.25F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(51, 97);
             label3.Name = "label3";
             label3.Size = new Size(111, 24);
@@ -134,6 +135,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Microsoft Sans Serif", 21.75F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonFace;
             label4.Location = new Point(50, 121);
             label4.Name = "label4";
             label4.Size = new Size(115, 33);

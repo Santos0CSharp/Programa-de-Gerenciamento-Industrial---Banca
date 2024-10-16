@@ -76,7 +76,7 @@
             button2.Font = new Font("Segoe UI", 15.75F, FontStyle.Bold, GraphicsUnit.Point);
             button2.Location = new Point(445, 410);
             button2.Name = "button2";
-            button2.Size = new Size(125, 51);
+            button2.Size = new Size(129, 51);
             button2.TabIndex = 12;
             button2.Text = "Prosseguir";
             button2.UseVisualStyleBackColor = false;
@@ -88,6 +88,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(127, 235);
             label1.Name = "label1";
             label1.Size = new Size(85, 21);
@@ -100,6 +101,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(143, 305);
             label2.Name = "label2";
             label2.Size = new Size(68, 21);

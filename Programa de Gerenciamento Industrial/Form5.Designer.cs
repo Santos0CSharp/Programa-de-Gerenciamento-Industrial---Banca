@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
             label2 = new Label();
             label3 = new Label();
             label4 = new Label();
@@ -40,26 +39,15 @@
             button1 = new Button();
             button5 = new Button();
             textBox6 = new TextBox();
-            textBox1 = new TextBox();
             label6 = new Label();
             SuspendLayout();
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.BackColor = Color.Transparent;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label1.Location = new Point(12, 69);
-            label1.Name = "label1";
-            label1.Size = new Size(242, 21);
-            label1.TabIndex = 0;
-            label1.Text = "ID (Gerado automaticamente):";
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(12, 113);
             label2.Name = "label2";
             label2.Size = new Size(166, 21);
@@ -71,6 +59,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(12, 156);
             label3.Name = "label3";
             label3.Size = new Size(214, 21);
@@ -82,6 +71,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonFace;
             label4.Location = new Point(12, 201);
             label4.Name = "label4";
             label4.Size = new Size(185, 21);
@@ -93,6 +83,7 @@
             label5.AutoSize = true;
             label5.BackColor = Color.Transparent;
             label5.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label5.ForeColor = SystemColors.ButtonFace;
             label5.Location = new Point(12, 244);
             label5.Name = "label5";
             label5.Size = new Size(170, 21);
@@ -158,27 +149,19 @@
             // textBox6
             // 
             textBox6.Cursor = Cursors.IBeam;
-            textBox6.Location = new Point(260, 30);
+            textBox6.Location = new Point(260, 70);
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(212, 23);
             textBox6.TabIndex = 12;
             textBox6.TextChanged += textBox6_TextChanged;
-            // 
-            // textBox1
-            // 
-            textBox1.Cursor = Cursors.No;
-            textBox1.Location = new Point(260, 71);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(212, 23);
-            textBox1.TabIndex = 5;
-            textBox1.TextChanged += textBox1_TextChanged;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            label6.Location = new Point(18, 32);
+            label6.ForeColor = SystemColors.ButtonFace;
+            label6.Location = new Point(18, 72);
             label6.Name = "label6";
             label6.Size = new Size(164, 21);
             label6.TabIndex = 13;
@@ -199,24 +182,21 @@
             Controls.Add(textBox4);
             Controls.Add(textBox3);
             Controls.Add(textBox2);
-            Controls.Add(textBox1);
             Controls.Add(label5);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
-            Controls.Add(label1);
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Name = "Form5";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form5";
+            Load += Form5_Load;
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
-
-        private Label label1;
         private Label label2;
         private Label label3;
         private Label label4;
@@ -229,7 +209,6 @@
         private Button button5;
         private ComboBox comboBox1;
         private TextBox textBox6;
-        private TextBox textBox1;
         private Label label6;
     }
 }

@@ -57,6 +57,7 @@
             label4.AutoSize = true;
             label4.BackColor = Color.Transparent;
             label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label4.ForeColor = SystemColors.ButtonFace;
             label4.Location = new Point(24, 261);
             label4.Margin = new Padding(2, 0, 2, 0);
             label4.Name = "label4";
@@ -124,6 +125,7 @@
             label3.AutoSize = true;
             label3.BackColor = Color.Transparent;
             label3.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label3.ForeColor = SystemColors.ButtonFace;
             label3.Location = new Point(53, 221);
             label3.Margin = new Padding(2, 0, 2, 0);
             label3.Name = "label3";
@@ -136,6 +138,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label2.ForeColor = SystemColors.ButtonFace;
             label2.Location = new Point(11, 178);
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
@@ -149,6 +152,7 @@
             label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label1.ForeColor = SystemColors.ButtonFace;
             label1.Location = new Point(39, 126);
             label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
@@ -184,6 +188,7 @@
             label6.AutoSize = true;
             label6.BackColor = Color.Transparent;
             label6.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            label6.ForeColor = SystemColors.ButtonFace;
             label6.Location = new Point(53, 81);
             label6.Margin = new Padding(2, 0, 2, 0);
             label6.Name = "label6";
